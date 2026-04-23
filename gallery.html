@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Bennett | Gallery</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .gallery-wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:60px 20px;
+    }
+
+    .gallery-title{
+      color:var(--green, #1f6b4f);
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .gallery-text{
+      color:var(--muted, #617069);
+      margin-bottom:28px;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+
+    .gallery-item{
+      background:#fff;
+      border:1px solid #e2e6df;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(19,33,26,0.08);
+      transition:0.25s ease;
+      cursor:pointer;
+    }
+
+    .gallery-item:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 34px rgba(19,33,26,0.12);
+    }
+
+    .gallery-item img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      display:block;
+      background:#f2f2f2;
+    }
+
+    .gallery-caption{
+      padding:14px 16px;
+      font-weight:700;
+      color:#617069;
+    }
+
+    .lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.9);
+      z-index:5000;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .lightbox.open{
+      display:flex;
+    }
+
+    .lightbox img{
+      max-width:95%;
+      max-height:85vh;
+      border-radius:16px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .close-btn{
+      position:absolute;
+      top:20px;
+      right:24px;
+      font-size:2rem;
+      color:white;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    @media (max-width:700px){
+      .gallery-item img{
+        height:220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo">MICHAEL BENNETT</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
+      <nav class="nav" id="siteNav">
+        <a href="index.html">Profile</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="gallery.html" class="active">Gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="gallery-wrap">
+    <h1 class="gallery-title">Project Gallery</h1>
+    <p class="gallery-text">Photos of my cars, engines, builds, and projects.</p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item" onclick="openLightbox('./Kart.jpg')">
+        <img src="./Kart.jpg" alt="Go Kart">
+        <div class="gallery-caption">Go-Kart</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Two-stroke.jpg')">
+        <img src="./Two-stroke.jpg" alt="Two Stroke Engine">
+        <div class="gallery-caption">Two-Stroke Engine</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Mazda-front.jpg')">
+        <img src="./Mazda-front.jpg" alt="Mazda Front">
+        <div class="gallery-caption">Mazda Front</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Mazda-rear.jpg')">
+        <img src="./Mazda-rear.jpg" alt="Mazda Rear">
+        <div class="gallery-caption">Mazda Rear</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./vw.jpg')">
+        <img src="./vw.jpg" alt="VW">
+        <div class="gallery-caption">VW</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Audi-engine.jpg')">
+        <img src="./Audi-engine.jpg" alt="Audi Engine">
+        <div class="gallery-caption">Audi Engine</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Engine-build.jpg')">
+        <img src="./Engine-build.jpg" alt="Engine Build">
+        <div class="gallery-caption">Engine Build</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Jet.jpg')">
+        <img src="./Jet.jpg" alt="Jet">
+        <div class="gallery-caption">Jet</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('./Ebike.jpg')">
+        <img src="./Ebike.jpg" alt="E-Bike">
+        <div class="gallery-caption">E-Bike</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>Michael Bennett • Gallery</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script src="./script.js"></script>
+  <script>
+    function openLightbox(src){
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function closeLightbox(){
+      document.getElementById("lightbox").classList.remove("open");
+    }
+  </script>
+</body>
+</html>
